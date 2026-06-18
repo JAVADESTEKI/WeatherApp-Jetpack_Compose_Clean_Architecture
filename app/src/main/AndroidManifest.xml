@@ -18,9 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Weather">
 
-        <activity
-            android:name=".presentation.ui.activity.CitySearchActivity"
-            android:exported="false" />
+
         <activity
             android:name=".presentation.ui.activity.MainActivity"
             android:exported="true">
@@ -30,6 +28,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
     </application>
 
 </manifest>
