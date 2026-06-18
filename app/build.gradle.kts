@@ -4,8 +4,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.devtools.ksp)
+    alias(libs.plugins.kotlin.compose)
     id("kotlin-parcelize")
     id ("com.google.dagger.hilt.android")
+
 }
 
 android {
@@ -39,26 +41,25 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_19
-        targetCompatibility = JavaVersion.VERSION_19
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlin {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_19)
+            jvmTarget.set(JvmTarget.JVM_17)
         }
     }
     buildFeatures {
-        viewBinding = true
         buildConfig = true
+        compose= true
     }
 }
 
 dependencies {
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -68,9 +69,8 @@ dependencies {
     implementation(libs.retrofit.gson)
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
-    implementation(libs.lifecycle.viewmodel)
-    implementation(libs.lifecycle.livedata)
-    implementation(libs.glide)
+
+
 
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
@@ -80,11 +80,10 @@ dependencies {
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
-    ksp(libs.hilt.compiler)
+
 
     implementation(libs.androidx.datastore.preferences)
-    // Alternatively - without an Android dependency.
-    implementation(libs.androidx.datastore.preferences.core)
+
 
     implementation(libs.play.services.location)
 
@@ -100,12 +99,33 @@ dependencies {
     // Flow Test
     testImplementation(libs.turbine)
 
-    // LiveData
+
     testImplementation(libs.androidx.core.testing)
     testImplementation(kotlin("test"))
 
     androidTestImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.mockwebserver)
 
+    //for compose added
+    implementation(platform(libs.androidx.compose.bom))
+
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    implementation(libs.androidx.navigation.compose)
+
+    debugImplementation(libs.androidx.ui.tooling)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.runtime.livedata)
+    // Coil for image loading in Compose
+    implementation(libs.coil.compose)
 }
 
